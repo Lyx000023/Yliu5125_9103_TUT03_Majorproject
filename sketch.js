@@ -487,6 +487,8 @@ but also gives you the flexibility to control which grid lines appear.
   strokeCap(SQUARE);
   stroke('#F7DF4D');
   strokeWeight(gap * 0.8);
+
+  //Same principle as above
   yellowCols.forEach(i => {
     let x = gap + i * (cellSize1 + gap) + cellSize1 / 2;
     line(x, 0, x, height);
@@ -503,32 +505,45 @@ but also gives you the flexibility to control which grid lines appear.
   fill('#D12E2E');
   rectMode(CENTER);
   redBlocks.forEach(({i, j}) => {
-    // 格子中心
+
+    // Calculate the center position of each red block based on its index (i, j)
     const x0 = gap + i * (cellSize1 + gap);
     const y0 = gap + j * (cellSize1 + gap);
     const cx = x0 + cellSize1 / 2;
     const cy = y0 + cellSize1 / 2;
 
-    // 用噪声生成偏移
-    // t*0.01 控制抖动速度，+100 保证 x,y 噪声不一样
+    // Generate offsets with noise
+    // t*0.01 to control jitter speed, +100 to ensure x,y noise is different
     const dx = map(noise(i * 0.01, j * 0.01, t * 0.05), 0, 1, -amp, amp);
     const dy = map(noise(i * 0.04, j * 0.01, t * 0.05 + 100), 0, 1, -amp, amp);
 
-    // 计算放大后的大小
+    // Calculate the enlarged size
+    // cellSize1 is the size of each cell in the grid
+    // redScale is the scale factor for the red squares
+    // The width and height of the red squares are scaled by redScale
+    // cellSize1 * redScale is the width and height of the red squares
+  
     const w = cellSize1 * redScale;
     const h = cellSize1 * redScale;
 
-    // 绘制抖动红块
+    // Drawing red squares
+    
+    // rect(cx, cy, w, h) draws the rectangle at the center (cx, cy) with width w and height h
+    // rect(cx + dx, cy + dy, w, h) draws the rectangle at the center (cx + dx, cy + dy) with width w and height h
+    // dx, dy are used to offset the rectangle position
     rect(cx + dx, cy + dy, w, h);
   });
   
   const whiteScale = 1.3;
-const whiteAmp   = gap * 0.3;     // 只抖动 20% 的 gap
-const whiteSpeed = 0.05;          // 速度是红块的 0.4 倍左右
+const whiteAmp   = gap * 0.3;     
+const whiteSpeed = 0.05;          
 
 noStroke();
 fill('#d9dde2');
 rectMode(CENTER);
+// Same principle as above
+// Iterate through the whiteBlocks array to draw each block
+// Calculate the center position of each block based on its index (i, j)
 whiteBlocks.forEach(({ i, j }) => {
   const x0 = gap + i * (cellSize1 + gap);
   const y0 = gap + j * (cellSize1 + gap);
@@ -537,7 +552,11 @@ whiteBlocks.forEach(({ i, j }) => {
   const w  = cellSize1 * whiteScale;
   const h  = cellSize1 * whiteScale;
 
-  // 用较慢的噪声生成微小偏移
+  // Generate small offsets with slower noise.
+  // t*whiteSpeed controls speed, +200 ensures x,y noise is different
+  // i*0.02, j*0.02, t*whiteSpeed+200 to make sure that the noise is different for each frame
+  // i*0.02, j*0.02, t*whiteSpeed + 500 to make sure that the noise is different for each frame
+  // dx, dy are used to offset the rectangle position
   const dx = map(noise(i * 0.02, j * 0.02, t * whiteSpeed+200),      0,1, -whiteAmp, whiteAmp);
   const dy = map(noise(i * 0.02, j * 0.02, t * whiteSpeed + 500), 0,1, -whiteAmp, whiteAmp);
 
@@ -545,24 +564,35 @@ whiteBlocks.forEach(({ i, j }) => {
 });
 
   
-  rectMode(CORNER);
+  rectMode(CORNER); // rectMode(CENTER) means the rectangle is drawn from its center
 }
 
 
 
 function initLayout() {
-  // 计算响应式尺寸
+  // Responsive layout initialization
+  // Calculate the minimum dimension of the window
+  // This ensures the layout adapts to different screen sizes
+  // This is the key to making the layout responsive
+  
   let m = min(windowWidth, windowHeight);
   gap        = m * 0.02;
   cellSize1  = (m - (COLS1 + 1) * gap) / COLS1;
   cellSize2  = (m - (COLS2 + 1) * gap) / COLS2;
 
-  // 初始化 delays、active，并记录 maxDelay
+  // Initialize the delays and active states for the animations
+  // delays1/2 are arrays that store the random delay for each cell
+  // active1/2 are arrays that store whether each cell is active or not
+  // maxDelay is used to determine the longest delay for resetting the layout
   delays1 = []; active1 = [];
   delays2 = []; active2 = [];
   maxDelay = 0;
 
-  // 上层：方块
+  // Upper layer: square
+  // The upper layer is a grid of squares that pop up asynchronously
+  // Each square has a random delay before it starts popping up
+  // The animation uses an elastic easing function for a bouncy effect
+  // Same principle as above
   for (let j = 0; j < ROWS1; j++) {
     delays1[j] = []; active1[j] = [];
     for (let i = 0; i < COLS1; i++) {
@@ -572,7 +602,8 @@ function initLayout() {
       maxDelay = max(maxDelay, d);
     }
   }
-  // 下层：长方形
+  // lower layer: rectangle
+  
   for (let j = 0; j < ROWS2; j++) {
     delays2[j] = []; active2[j] = [];
     for (let i = 0; i < COLS2; i++) {
@@ -589,7 +620,11 @@ function windowResized() {
   initLayout();
 }
 
-// 弹性缓动函数
+// Set the elastic jog function to animate the graphic
+// This function creates a bouncy effect for the animations
+// It uses a sine wave to create the elastic effect
+// The function takes a progress value t (0 to 1) and returns the eased value
+
 function easeOutElastic(t) {
   const c4 = (2 * PI) / 3;
   if (t === 0) {
@@ -601,7 +636,9 @@ function easeOutElastic(t) {
   }
 }
 function drawColorZones() {
-  // 1. 计算所有分割线坐标
+  // 1. Calculate the coordinates of all dividing lines
+  ////Same principle as above
+  // Calculate the total width and height of the drawing area
   const xCuts = [0];
   yellowCols.forEach(i => {
     xCuts.push(gap + i * (cellSize1 + gap) + cellSize1 / 2);
@@ -636,7 +673,7 @@ function drawColorZones() {
     }
   }
 
-  // 3. 绘制每个大区的 4 块小区域
+  // 3. Mapping the 4 sub-areas of each large area
   noStroke();
   rectMode(CORNER);
   for (let xi = 0; xi < xCuts.length - 1; xi++) {
@@ -647,17 +684,19 @@ function drawColorZones() {
       const h  = yCuts[yj + 1] - y0;
       const cols = regionQuarterColors[xi][yj];
 
-      // 四个象限：0=左上, 1=右上, 2=左下, 3=右下
-      // 左上
+      // Four quadrants were set up: 0=top left, 1=top right, 2=bottom left, 3=bottom right. 
+      // Distribute different background colors.
+      // upper left
       fill(bgPalette[cols[0]]);
       rect(x0,       y0,     w/2, h/2);
-      // 右上
+      // upper right
       fill(bgPalette[cols[1]]);
       rect(x0 + w/2, y0,     w/2, h/2);
-      // 左下
+      // lower left
       fill(bgPalette[cols[2]]);
       rect(x0,       y0 + h/2, w/2, h/2);
-      // 右下
+      // lower right
+      
       fill(bgPalette[cols[3]]);
       rect(x0 + w/2, y0 + h/2, w/2, h/2);
     }
