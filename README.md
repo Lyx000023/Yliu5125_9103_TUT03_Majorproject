@@ -83,3 +83,31 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 let n = noise(i * 0.5, j * 0.5, t * 0.2);
 s *= lerp(0.59, 1.1, n);
 
+## 🔄 Changes to Base Group Code
+
+- Refactored timing logic for modularity:
+  - Split layout initialization into `initLayout()`
+  - Created `drawColorZones()` to manage dynamic backgrounds
+- Added weighted random selection of color quadrants using `weightedRandomIndex()`
+- Implemented multi-zone grid division based on responsive cuts from `yellowCols` and `yellowRows`
+- Integrated Perlin noise into red and white square animation for jitter effect
+
+---
+
+## 🧰 External Tools and References
+
+- **Libraries Used:**
+  - [`p5.js`](https://p5js.org/)
+  - `p5.sound.js` *(included but not used in my implementation)*
+
+- **References and Techniques:**
+  - [Daniel Shiffman – Perlin Noise Tutorial](https://www.youtube.com/watch?v=IKB1hWWedMk)
+  - p5.js official documentation
+  - ChatGPT suggestions (e.g., grid quadrant switching using weights)
+
+---
+
+## 🌐 Live Link
+
+[🔗 GitHub Pages Demo (Replace with actual URL)](#)
+
