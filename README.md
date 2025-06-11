@@ -24,7 +24,7 @@ The animation evolves autonomously over time:
 
 The entire animation is non-interactive yet continuously dynamic, creating an ever-changing visual composition.
 
-![Grid Animation Demo](assets/GIF_20250612013532477.GIF)
+![Grid Animation Demo](https://github.com/Lyx000023/Yliu5125_9103_TUT03_Majorproject/blob/main/%20assets/GIF_20250612013532477.GIF?raw=true)
 
 ---
 
