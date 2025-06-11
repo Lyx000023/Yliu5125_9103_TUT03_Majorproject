@@ -31,15 +31,15 @@ The entire animation is non-interactive yet continuously dynamic, creating an ev
 
 ---
 
-## ⚙️ Animation Approach
+## Animation Approach
 
-### 🔧 Driver: **Time** + **Perlin Noise**
+### Driver: **Time** + **Perlin Noise**
 
 - I chose a **time-based system** driven by `frameCount` and `millis()` to handle timing logic.
 - **Perlin noise** introduces organic motion and subtle variation.
 - A **weighted random color engine** controls region fills to simulate intentional design decisions.
 
-### 🎨 Animated Elements
+### Animated Elements
 
 | Layer           | Technique                 | Behavior                                  |
 |----------------|---------------------------|-------------------------------------------|
@@ -47,7 +47,7 @@ The entire animation is non-interactive yet continuously dynamic, creating an ev
 | Middle (Grid)   | Perlin-based offsets      | Red and white squares jitter subtly       |
 | Upper & Lower   | Delayed pop-outs + easing | Cubes and rectangles appear rhythmically  |
 
-### ⏱️ Timing and Reset
+### Timing and Reset
 
 - `initLayout()` assigns random delays to each grid cell.
 - After each animation loop completes, a new cycle with fresh randomness begins.
@@ -58,16 +58,16 @@ The entire animation is non-interactive yet continuously dynamic, creating an ev
 
 | Member    | Driver Used       | Feature Focus               |
 |-----------|-------------------|-----------------------------|
-| Me        | Time + Perlin     | Weighted color grids, noise jitter, responsive layout |
+| Me        | Perlin            | Weighted color grids, noise jitter, responsive layout |
 | Member A  | Mouse interaction | Real-time drawing or reveals |
 | Member B  | Audio beat        | Size pulsing or sync animation |
-| Member C  | Time only         | Fade in/out with sinusoidal oscillation |
+| Member C  | Time              | Fade in/out with sinusoidal oscillation |
 
 My work emphasizes **modular structure**, **visual hierarchy**, and **continuously varying behavior** without direct input.
 
 ---
 
-## 💡 Inspiration
+## Inspiration
 
 - The geometric, asymmetric design is inspired by **Mondrian's Composition** works.
 - Color logic influenced by **data visualizations and cartographic grids**.
@@ -77,7 +77,7 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 
 ---
 
-## 🔧 Technical Summary
+## Technical Summary
 
 - **Responsive design** using `windowWidth/Height` to scale layout.
 - **Grid-based animation** with two layers:
@@ -90,7 +90,7 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 - **Efficient control flow** using `draw()` loop + `t` as frame timer
 
 
-## 🔄 Changes to Base Group Code
+## Changes to Base Group Code
 
 - Refactored timing logic for modularity:
   - Split layout initialization into `initLayout()`
@@ -101,7 +101,7 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 
 ---
 
-## 🧰 External Tools and References
+## External Tools and References
 
 - **Libraries Used:**
   - [`p5.js`](https://p5js.org/)
@@ -114,7 +114,7 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 
 ---
 
-## 🌐 Live Link
+## Live Link
 
-[🔗 GitHub Pages Demo (Replace with actual URL)](#)
+[GitHub Pages Demo (https://github.com/Lyx000023/Yliu5125_9103_TUT03_Majorproject.git)](#)
 
