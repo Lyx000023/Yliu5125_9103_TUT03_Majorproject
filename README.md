@@ -5,7 +5,7 @@ Provides detailed explanations and links to prototypes for major projects.
 
 # Boogie Code: A Digital Reimagining of Broadway
 
-## Overview
+## Introduction
 
 This project takes inspiration from Piet Mondrian’s painting "Broadway Boogie Woogie" (1942–43), which transforms the structure of New York City’s street grid into a vibrant composition of yellow, red, blue, and white blocks. The intersecting lines and rhythmic placements echo both urban mapping and the syncopated pulse of boogie-woogie jazz music.
 
@@ -14,7 +14,7 @@ As a part of a group generative art exploration built with **p5.js**, my task fo
 
 ---
 
-## 🖱️ How to Interact
+## How to Interact
 
 - Load the webpage — no further interaction is needed.
 - The animation evolves on its own:
