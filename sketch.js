@@ -320,15 +320,32 @@ const whiteBlocks = [
  */
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  initLayout();
-  frameRate(60);
+  createCanvas(windowWidth, windowHeight); //Responsive canvas
+  initLayout(); //Initialize layout
+  frameRate(60); 
+  /*
+  sets the “tempo” of the animation so that the code keeps refreshing the frame at 60 times per second, 
+  which makes the animation look smoother and more natural.
+  */
 }
 
+
+/*
+draw(): the main loop of rendering is divided into several main layouts
+ * 1) Draw the background color area of the bottom layer that changes over time.
+ * 2) Render the bottom layer of randomly popping rectangular animations.
+ * 3) Render the middle layer of static gridlines with red and white squares (wiggling at different frequencies in response to the theme)
+ * 4) Render top level small square animation
+ * 5) Set update time and loop animation
+*/
 function draw() {
   background(240);
   drawColorZones();
   // —— Lower: rectangular pop-up —— 
+
+  // The lower layer is a grid of rectangles that pop up asynchronously
+  // Each rectangle has a random delay before it starts popping up
+  // The animation uses an elastic easing function for a bouncy effect
   for (let j = 0; j < ROWS2; j++) {
     for (let i = 0; i < COLS2; i++) {
       if (!active2[j][i]) continue;
@@ -336,14 +353,28 @@ function draw() {
       let progress = constrain((t - start) / DURATION2, 0, 1);
       let s        = easeOutElastic(progress);
 
+      // Calculate the rectangle position and size
+      // gap is the space between the rectangles
+      // cellSize2 is the size of each rectangle
+    
+      // s is the scale factor based on the progress of the animation
+      // i,j are the column and row indices of the rectangle
+      // t is the time counter that increases each frame
+      // gap is the space between the rectangles
+
       let x0 = gap  + i * (cellSize2 + gap);
       let y0 = gap + j * (cellSize2 + gap);
       let cx = x0 + cellSize2 / 2;
       let cy = y0 + cellSize2 / 2;
-      // 长方形宽高
+      // rectangle width and height
       let w  = cellSize2 * 2. * s;
       let h  = cellSize2 * 1.4 * s;
-
+      // noise for random offset
+      // t*0.01 Controls the speed of noise, +300 Ensures that x,y noise is different
+      // i,j are used to ensure that the noise is different for each cell
+      // i*0.5, j*1, t*0.01 + 300 Ensures that the noise is different for each cell
+      // i*0.5, j*0.1, t*0.01 + 150 Ensures that the noise is different for each cell
+      // dx, dy are used to offset the rectangle position
       let n1 = noise(i * 0.5, j * 1, t * 0.01 + 300);
       let n2 = noise(i * 0.5, j * 0.1, t * 0.01 + 150);
       let dx = (n1 - 0.5) * cellSize2 * 0.2;
@@ -360,9 +391,13 @@ function draw() {
       pop();
     }
   }
+
+  // —— Middle layer: static grid lines and red and white blocks ——
+
   drawStaticBackground();
 
-  // —— 上层：方块弹出 —— 
+  // —— Upper: Cube Pop —— 
+  // Same principle as above
   for (let j = 0; j < ROWS1; j++) {
     for (let i = 0; i < COLS1; i++) {
       if (!active1[j][i]) continue;
@@ -390,7 +425,11 @@ function draw() {
     }
   }
 
-  // 推进计时并循环重置
+  // Advance the timer and cycle through the resets
+  // t is the global timer that increases each frame
+  // maxDelay is the maximum delay time for the animations
+  // If t exceeds the maximum delay plus the longest animation duration, reset the layout
+  // This ensures the animations loop seamlessly
   t++;
   if (t > maxDelay + max(DURATION1, DURATION2)) {
     initLayout();
@@ -398,17 +437,26 @@ function draw() {
   }
 }
 
+
+//// —— Static background drawing function ——
+/**
+ * drawStaticBackground()：Draws the static background with grid lines and red/white blocks
+ * It calculates the total drawing area size, draws yellow lines, red blocks with noise jitter, and white blocks.
+ */
+
 function drawStaticBackground() {
 
 
-  // —— 静态背景 ——
-  // 计算上层总绘制区域尺寸
+  // —— Static background ——
+  // Calculate the size of the total upper drawing area
   strokeCap(SQUARE);
   
+  // Calculate the total width and height of the drawing area
   const totalW = COLS1 * cellSize1 + (COLS1 + 1) * gap;
   const totalH = ROWS1 * cellSize1 + (ROWS1 + 1) * gap;
 
-  // 黄色线条
+  // yellow line
+  // Vertical lines: from top to bottom
   stroke('#F7DF4D');
   strokeWeight(gap * 1.3);
   yellowCols.forEach(i => {
@@ -416,7 +464,18 @@ function drawStaticBackground() {
     line(x, 0, x, height);
   });
 
-  // 水平线：从画布最左到最右
+  // Horizontal line: from the leftmost to the rightmost part of the canvas
+  /*
+  This “yellow line” drawing feature actually evolved from the responsive grid layout in the course:
+Initially, we used gap and cellSize to dynamically generate the entire checkerboard grid, but later, 
+in order to draw lines only in the specified rows and columns, I collected the row numbers [i] 
+and column numbers [j] into the yellowRows/yellowCols array, 
+and then traversed these indices to calculate the corresponding pixel positions (gap + i*(cellSize+gap) + cellSize/2), 
+and then used line() to draw on-demand. ), and line() is used to draw on-demand. 
+This preserves the ability to make responsive adjustments,
+but also gives you the flexibility to control which grid lines appear.
+  */
+  
   yellowRows.forEach(j => {
     let y = gap + j * (cellSize1 + gap) + cellSize1 / 2;
     line(0, y, width, y);
@@ -435,9 +494,9 @@ function drawStaticBackground() {
     line(0, y, width, y);
   });
 
-  // —— 红块加噪声抖动 —— 
-  const redScale = 1.3;      // 如果你还想放大红块
-  const amp      = gap * 0.6;      // 最大偏移量 = 一个 gap
+  // —— Red block plus noise jitter —— 
+  const redScale = 1.3;      // Enlarge the square to fit the background grid size
+  const amp      = gap * 0.6;      // Maximum offset = one gap
   noStroke();
   fill('#D12E2E');
   rectMode(CENTER);
