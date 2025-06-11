@@ -651,7 +651,14 @@ function drawColorZones() {
   });
   yCuts.push(height);
 
-  // 2. 定时或首次随机生成每个 region 的四个小块颜色索引
+  /*
+        The function of this code is to generate four weighted random color indices for each “grid region” delimited by xCuts and yCuts, 
+        and store them in regionQuarterColors:
+        The outer for iterates over the column indexes xi of all regions, initializing an array for each column, 
+        and the inner for iterates over the row indexes yj, weighted by weightedRandomIndex(colorWeights) four times.
+        Pick four colors from the background palette corresponding to the four sub-regions of the top left, 
+        top right, bottom left and bottom right of the region, to facilitate subsequent color filling and dynamic switching by sub-block.
+      */
   const now = millis();
   if (
     now - colorZoneLastSwitch > colorZoneInterval ||
@@ -662,7 +669,8 @@ function drawColorZones() {
     for (let xi = 0; xi < xCuts.length - 1; xi++) {
       regionQuarterColors[xi] = [];
       for (let yj = 0; yj < yCuts.length - 1; yj++) {
-        // 为当前大区生成 4 个随机颜色索引
+       // Generate 4 random color indices for the current region
+    
         regionQuarterColors[xi][yj] = [
           weightedRandomIndex(colorWeights),
           weightedRandomIndex(colorWeights),
@@ -711,3 +719,4 @@ function weightedRandomIndex(weights) {
   }
   return weights.length - 1;
 }
+
