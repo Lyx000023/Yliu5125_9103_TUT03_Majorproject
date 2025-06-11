@@ -313,6 +313,7 @@ const whiteBlocks = [
   {i:36, j: 20 },
   {i:40, j: 20 },
   {i:44, j: 20 },
+
 ];
 
 /**
@@ -476,12 +477,13 @@ This preserves the ability to make responsive adjustments,
 but also gives you the flexibility to control which grid lines appear.
   */
   
+
   yellowRows.forEach(j => {
     let y = gap + j * (cellSize1 + gap) + cellSize1 / 2;
     line(0, y, width, y);
   });
 
-  // 红色实心块
+  // Solid red blocks
   strokeCap(SQUARE);
   stroke('#F7DF4D');
   strokeWeight(gap * 0.8);
