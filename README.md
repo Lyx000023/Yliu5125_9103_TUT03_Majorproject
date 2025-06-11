@@ -29,6 +29,7 @@ The entire animation is non-interactive yet continuously dynamic, creating an ev
   <img src="https://github.com/Lyx000023/Yliu5125_9103_TUT03_Majorproject/blob/main/%20assets/GIF_20250612013532477.GIF?raw=true" alt="Animation Preview" width="500">
 </p>
 
+
 ---
 
 ## ⚙️ Animation Approach
