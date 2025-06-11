@@ -24,6 +24,8 @@ The animation evolves autonomously over time:
 
 The entire animation is non-interactive yet continuously dynamic, creating an ever-changing visual composition.
 
+![Demo Animation](assets/GIF_20250612013532477.GIF)
+
 ---
 
 ## ⚙️ Animation Approach
