@@ -79,9 +79,6 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 - **Elastic easing** (`easeOutElastic`) to give animation springiness
 - **Efficient control flow** using `draw()` loop + `t` as frame timer
 
-```js
-let n = noise(i * 0.5, j * 0.5, t * 0.2);
-s *= lerp(0.59, 1.1, n);
 
 ## 🔄 Changes to Base Group Code
 
