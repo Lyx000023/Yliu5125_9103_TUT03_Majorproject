@@ -23,12 +23,10 @@ The animation evolves autonomously over time:
   - Rectangular elements in the upper and lower regions asynchronously pop in and out, following a fixed temporal rhythm.
 
 The entire animation is non-interactive yet continuously dynamic, creating an ever-changing visual composition.
-
-
+<br><br>
 <p align="center">
   <img src="https://github.com/Lyx000023/Yliu5125_9103_TUT03_Majorproject/blob/main/%20assets/GIF_20250612013532477.GIF?raw=true" alt="Animation Preview" width="500">
 </p>
-
 <br><br>
 ---
 
