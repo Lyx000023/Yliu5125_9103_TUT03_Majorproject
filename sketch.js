@@ -1,33 +1,70 @@
-// —— 全局参数 ——
+// —— Parameters for all code ——
 
-const bgPalette = ['#f2f2f2','#ad011a','#cccccc','#F7DF4D',];
+const bgPalette = ['#f2f2f2','#ad011a','#cccccc','#F7DF4D',]; // Color palette for subsequent backgrounds
 const colorWeights = [  0.9,       0.05,       0.1,       0.05   ]; 
-  let   regionQuarterColors = [];       // 3D 数组：regionQuarterColors[xi][yj] = [c0,c1,c2,c3]
+/*
+Since in the original artwork yellow, blue is the accent or main part. 
+The visual effect is controlled by adjusting the weights in the background.
+where yellow and blue are less likely to be weighted.
+*/
+
+
+  let   regionQuarterColors = [];      
+  /*
+As I want to divide the background by a fixed yellow background 
+and divide the divided background again.
+By asking chatgpt, I was prompted to use arrays to 
+store the color index of the colors. 
+
+The contents of which are：regionQuarterColors[xi][yj] = [c0,c1,c2,c3]
+*/
   let   colorZoneLastSwitch = 0;
-  const colorZoneInterval   = 2500;     // 切换间隔 (毫秒)
-// 上层方块
+  const colorZoneInterval   = 2500;  
+
+/*
+In order to make the background toggle color blocks, the background 
+sub-area toggle interval is set (milliseconds/unit)
+*/
+
+// Set a fixed number of rows and columns and animation time for the upper square.
 const COLS1     = 25;
 const ROWS1     = 25;
 const DURATION1 = 100;
-// 下层长方形
+// Set a fixed number of rows and columns and animation time for the lower square.
 const COLS2     = 10;
 const ROWS2     = 10;
 const DURATION2 = 20;
 
-// 存放每层格子的随机延迟和激活状态
+/*
+For the two subsequent dynamic stochastic images：
+serve as the “who moves and when” controller in the sketch:
+delays1/2 assign a random start offset to each cell’s pop-out animation.
+active1/2 flag which cells should appear (true) and which remain blank (false).
+Together they create an asynchronous, sparse pop-out rhythm that resets each cycle, 
+keeping the animation lively and non-uniform.
+
+*/
 let delays1 = [], active1 = [];
 let delays2 = [], active2 = [];
 
-// 响应式布局参数
+/*
+To allow each square to change with the screen size of different users. 
+The parameters related to the layout are set at the top of the file. 
+Will set the stage for the subsequent responsive design.
+*/
 let gap, cellSize1, cellSize2;
 
-// 循环计时器与最大延迟
+// Set t for subsequent timers and delays with Maxbelay's parameters.
 let t = 0;
 let maxDelay = 0;
 
-const yellowCols = [1, 3, 5, 11, 23, 33, 35, 45];
-const yellowRows = [2, 4, 12, 20, 33];
-// 红块位置列表（i, j 均基于上层网格）
+
+const yellowCols = [1, 3, 5, 11, 23, 33, 35, 45]; 
+// List of yellow column positions (i based on upper grid, vertical coordinate)
+const yellowRows = [2, 4, 12, 20, 33]; 
+// List of yellow row positions (j based on upper grid, horizontal coordinates)
+
+// List of red block locations (i, j are based on the upper grid)
 const redBlocks = [
   { i: 1, j: 1 },
   { i: 1, j: 3 },
@@ -137,6 +174,8 @@ const redBlocks = [
   
 ];
 
+
+// List of white block locations (i, j are based on the upper grid)
 const whiteBlocks = [
   { i: 1, j: 0 },
   { i: 5, j: 5 },
@@ -276,7 +315,9 @@ const whiteBlocks = [
   {i:44, j: 20 },
 ];
 
-
+/**
+ * setup()：Initialize canvas, layout & frame rate
+ */
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -287,7 +328,7 @@ function setup() {
 function draw() {
   background(240);
   drawColorZones();
-  // —— 下层：长方形弹出 —— 
+  // —— Lower: rectangular pop-up —— 
   for (let j = 0; j < ROWS2; j++) {
     for (let i = 0; i < COLS2; i++) {
       if (!active2[j][i]) continue;
