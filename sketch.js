@@ -710,6 +710,15 @@ function drawColorZones() {
     }
   }
 }
+
+/*
+This weightedRandomIndex(weights) function is used to make a weighted random index based on a set of weights:
+It adds up all the weights to get the total, then generates a random value r in the range [0, total), then iterates through the array of weights from the beginning - if r is less than the current weight, it returns the index; otherwise it subtracts the current weight from r and selects the index.
+If r is less than the current weight, return the index;
+Otherwise, subtract the current weight from r and move on to the next one.
+In this way, the higher the weight, the higher the probability that an item will be selected.
+*/
+
 function weightedRandomIndex(weights) {
   const total = weights.reduce((sum, w) => sum + w, 0);
   let r = random(total);
