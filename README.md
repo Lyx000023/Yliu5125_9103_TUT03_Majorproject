@@ -114,7 +114,4 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 
 ---
 
-## Live Link
-
-[GitHub Pages Demo (https://github.com/Lyx000023/Yliu5125_9103_TUT03_Majorproject.git)](#)
 
