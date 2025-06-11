@@ -1,11 +1,16 @@
 # Yliu5125_9103_TUT03_Majorproject
 Provides detailed explanations and links to prototypes for major projects.
 
+
+
 # 🟨 Interactive Grid-Based Animation
 
 ## 🎯 Overview
 
-This project is part of a group generative art exploration built with **p5.js**, focusing on responsive visual systems inspired by urban rhythm and abstract geometry. My individual contribution uses **Perlin noise**, **weighted randomness**, and **asynchronous timing** to create a non-repetitive, animated, Mondrian-like grid composition.
+This project takes inspiration from Piet Mondrian’s painting "Broadway Boogie Woogie" (1942–43), which transforms the structure of New York City’s street grid into a vibrant composition of yellow, red, blue, and white blocks. The intersecting lines and rhythmic placements echo both urban mapping and the syncopated pulse of boogie-woogie jazz music.
+
+
+As a part of a group generative art exploration built with **p5.js**, my task focusing on responsive visual systems inspired by urban rhythm and abstract geometry. My individual contribution uses **Perlin noise**, **weighted randomness**, and **asynchronous timing** to create a non-repetitive, animated, Mondrian-like grid composition.
 
 ---
 
