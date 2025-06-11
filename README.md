@@ -16,13 +16,13 @@ As a part of a group generative art exploration built with **p5.js**, my task fo
 
 ## How to Interact
 
-- Load the webpage — no further interaction is needed.
-- The animation evolves on its own:
-  - **Color blocks** pulse and transition at set intervals.
-  - **Red and white squares** subtly jitter using Perlin noise.
-  - **Upper and lower rectangles** pop in and out asynchronously in a “breathing” rhythm.
+**To begin experiencing the work, simply load the webpage—no further interaction is required.**
+The animation evolves autonomously over time:
+  - Color blocks pulse and transition at predetermined intervals.
+  - Red and white squares exhibit subtle jittering behavior driven by Perlin noise.
+  - Rectangular elements in the upper and lower regions asynchronously pop in and out, following a fixed temporal rhythm.
 
-> 🎬 The entire animation is non-interactive but continuously changing — ideal for visual contemplation.
+The entire animation is non-interactive yet continuously dynamic, creating an ever-changing visual composition.
 
 ---
 
