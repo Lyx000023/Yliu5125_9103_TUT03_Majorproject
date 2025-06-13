@@ -45,31 +45,43 @@ The animation is composed of three primary elements, each contributing to the vi
 
 **Weighted Color Region Background**
 Color zones are generated using a weighted random algorithm, resulting in non-uniform, dynamically shifting areas that form the foundation of the composition.
+
 **Yellow Grid Lines with Perlin-Based Offsets**
 Fixed yellow lines represent the structure of urban streets. These are combined with Perlin noise–driven offsets to introduce subtle movement, simulating the rhythm and vibrancy of a living city.
+
 **Elastic Animated Blocks**
 Rectangular blocks randomly appear across the grid using an elastic easing function. Their staggered timing and bounce effect create a sense of temporal variation and visual contrast.
 
 ### Timing and Reset
 
 `initLayout()` assigns random delays to each grid cell.
+
 After each animation loop completes, a new cycle with fresh randomness begins.
 
 ---
 
-## 🔍 My Contribution vs. Group Members
+## Individual Differences in Approach
 
-| Member    | Driver Used       | Feature Focus               |
-|-----------|-------------------|-----------------------------|
-| Me        | Perlin            | Weighted color grids, noise jitter, responsive layout |
-| Member A  | Mouse interaction | Real-time drawing or reveals |
-| Member B  | Audio beat        | Size pulsing or sync animation |
-| Member C  | Time              | Fade in/out with sinusoidal oscillation |
+While I contributed to the group project by implementing user interaction and shared background rendering (as shown in the demo below — blocks respond to user-triggered instruments), my individual work shifts focus toward a individual theme: **Perlin noise and randomness**.
 
-My work emphasizes **modular structure**, **visual hierarchy**, and **continuously varying behavior** without direct input.
 
 <p align="center">
   <img src=" assets/GIF_20250613164716657.GIF" alt="Animation Preview" width="500">
+
+
+
+In my solo contribution, I use noise to control the floating behavior of squares, adding subtle motion and liveliness to the visual composition.
+
+My work emphasizes **modular structure**, **visual hierarchy**, and **continuously evolving behavior** without direct user input.
+
+By combining squares of different forms and behaviors, I aim to abstractly represent the **diverse elements of music** — rhythm, variation, and texture — in a dynamic, generative visual form.
+
+
+<br><br>
+<p align="center">
+  <img src="https://github.com/Lyx000023/Yliu5125_9103_TUT03_Majorproject/blob/main/%20assets/GIF_20250612013532477.GIF?raw=true" alt="Animation Preview" width="500">
+</p>
+<br><br>
 
 ---
 
@@ -99,15 +111,6 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
 - **Elastic easing** (`easeOutElastic`) to give animation springiness
 - **Efficient control flow** using `draw()` loop + `t` as frame timer
 
-
-## Changes to Base Group Code
-
-- Refactored timing logic for modularity:
-  - Split layout initialization into `initLayout()`
-  - Created `drawColorZones()` to manage dynamic backgrounds
-- Added weighted random selection of color quadrants using `weightedRandomIndex()`
-- Implemented multi-zone grid division based on responsive cuts from `yellowCols` and `yellowRows`
-- Integrated Perlin noise into red and white square animation for jitter effect
 
 ---
 
