@@ -145,6 +145,7 @@ using `draw()` loop + `t` as frame timer. Each animation cycle is managed with a
    `p5.sound.js` *(included but not used in my implementation)*
 
 - **References and Techniques:**
+
    [Daniel Shiffman – Perlin Noise Tutorial](https://www.youtube.com/watch?v=IKB1hWWedMk)
 
    p5.js official documentation
