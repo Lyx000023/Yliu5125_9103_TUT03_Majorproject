@@ -166,11 +166,3 @@ using `draw()` loop + `t` as frame timer. Each animation cycle is managed with a
 
   To achieve the concept of “controlled randomness” inspired by Generative Art, I consulted ChatGPT on how to apply weighted randomness for color selection and how to divide regions into separate quadrants. With the help of GPT, I implemented a nested loop structure to generate a color combination for each section. The use of weighting allows for different probabilities to be assigned to preferred colors.
   
-
-
-
-
-
----
-
-
