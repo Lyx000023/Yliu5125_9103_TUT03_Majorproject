@@ -12,6 +12,12 @@ This project takes inspiration from Piet Mondrian’s painting "Broadway Boogie 
 
 As a part of a group generative art exploration built with **p5.js**, my task focusing on responsive visual systems inspired by urban rhythm and abstract geometry. My individual contribution uses **Perlin noise**, **weighted randomness**, and **asynchronous timing** to create a non-repetitive, animated, Mondrian-like grid composition.
 
+<br><br>
+<p align="center">
+  <img src=" assets/Piet_Mondrian Broadway_Boogie_Woogie.jpeg" alt="Animation Preview" width="500">
+</p>
+<br><br>
+
 ---
 
 ## How to Interact
