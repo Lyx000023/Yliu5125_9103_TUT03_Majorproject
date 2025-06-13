@@ -134,16 +134,17 @@ using `draw()` loop + `t` as frame timer. Each animation cycle is managed with a
 ## External Tools and References
 
 - **Libraries Used:**
-  - [`p5.js`](https://p5js.org/)
-  - `p5.sound.js` *(included but not used in my implementation)*
+   [`p5.js`](https://p5js.org/)
+   `p5.sound.js` *(included but not used in my implementation)*
 
 - **References and Techniques:**
-  - [Daniel Shiffman – Perlin Noise Tutorial](https://www.youtube.com/watch?v=IKB1hWWedMk)
+   [Daniel Shiffman – Perlin Noise Tutorial](https://www.youtube.com/watch?v=IKB1hWWedMk)
 
    p5.js official documentation
 
    ChatGPT suggestions (e.g., grid quadrant switching using weights)
 
+  In order to obtain information and information sources more quickly during the data search stage, this work uses chatgpt search. In addition, AI is used to check and modify grammatical expressions. However, all content is created by the author.
    <br><br>
 <p align="center">
   <img src=" assets/Creative coding major project .jpg" width="500">
