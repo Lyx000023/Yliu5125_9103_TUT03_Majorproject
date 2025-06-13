@@ -93,8 +93,13 @@ By combining squares of different forms and behaviors, I aim to abstractly repre
 
 ## Inspiration
 
-- The geometric, asymmetric design is inspired by **Mondrian's Composition** works.
-- Color logic influenced by **data visualizations and cartographic grids**.
+A key inspiration for this project comes from an interpretation of Piet Mondrian’s Broadway Boogie Woogie, where the composition is compared to a musical score.
+
+In the explanation, the original design  is to convert maps and music.Therefore, in both the group and individual parts, we try to transform the relationship between music and graphics, adding a new dynamic to the originally static artwork.
+
+
+ Some of the detailed features are inspired by:
+
 - Procedural randomness concepts from:
   - [Daniel Shiffman's Perlin Noise tutorial](https://www.youtube.com/watch?v=IKB1hWWedMk)
   - Generative art examples using `noise()` and `random()` in p5.js
@@ -134,7 +139,9 @@ using `draw()` loop + `t` as frame timer. Each animation cycle is managed with a
 ## External Tools and References
 
 - **Libraries Used:**
+
    [`p5.js`](https://p5js.org/)
+
    `p5.sound.js` *(included but not used in my implementation)*
 
 - **References and Techniques:**
