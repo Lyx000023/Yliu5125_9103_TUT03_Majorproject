@@ -41,16 +41,19 @@ The entire animation is non-interactive yet continuously dynamic, creating an ev
 
 ### Animated Elements
 
-| Layer           | Technique                 | Behavior                                  |
-|----------------|---------------------------|-------------------------------------------|
-| Background      | Weighted random zones     | Each region subdivides into 4 and recolors over time |
-| Middle (Grid)   | Perlin-based offsets      | Red and white squares jitter subtly       |
-| Upper & Lower   | Delayed pop-outs + easing | Cubes and rectangles appear rhythmically  |
+The animation is composed of three primary elements, each contributing to the visual rhythm and conceptual layering of the work:
+
+**Weighted Color Region Background**
+Color zones are generated using a weighted random algorithm, resulting in non-uniform, dynamically shifting areas that form the foundation of the composition.
+**Yellow Grid Lines with Perlin-Based Offsets**
+Fixed yellow lines represent the structure of urban streets. These are combined with Perlin noise–driven offsets to introduce subtle movement, simulating the rhythm and vibrancy of a living city.
+**Elastic Animated Blocks**
+Rectangular blocks randomly appear across the grid using an elastic easing function. Their staggered timing and bounce effect create a sense of temporal variation and visual contrast.
 
 ### Timing and Reset
 
-- `initLayout()` assigns random delays to each grid cell.
-- After each animation loop completes, a new cycle with fresh randomness begins.
+`initLayout()` assigns random delays to each grid cell.
+After each animation loop completes, a new cycle with fresh randomness begins.
 
 ---
 
