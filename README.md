@@ -65,6 +65,9 @@ The entire animation is non-interactive yet continuously dynamic, creating an ev
 
 My work emphasizes **modular structure**, **visual hierarchy**, and **continuously varying behavior** without direct input.
 
+<p align="center">
+  <img src=" assets/GIF_20250613164716657.GIF" alt="Animation Preview" width="500">
+
 ---
 
 ## Inspiration
