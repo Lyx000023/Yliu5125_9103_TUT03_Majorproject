@@ -75,6 +75,10 @@ My work emphasizes **modular structure**, **visual hierarchy**, and **continuous
   - [Daniel Shiffman's Perlin Noise tutorial](https://www.youtube.com/watch?v=IKB1hWWedMk)
   - Generative art examples using `noise()` and `random()` in p5.js
 
+<br><br>
+<p align="center">
+  <img src="https://github.com/Lyx000023/Yliu5125_9103_tut03_02/blob/main/p5-project1/assets/Original%20work%20concept.png?raw=true" alt="Animation Preview" width="500">
+
 ---
 
 ## Technical Summary
