@@ -122,7 +122,7 @@ with two layers:
 
 - **Color Zones**:
 
-  The background is divided into zones based on yellow gridlines. Each region gets four colors using weighted randomness from bgPalette, and these update every 2500ms to keep things shifting slowly in the background.
+The background is divided into zones based on yellow gridlines. Each region gets four colors using weighted randomness from bgPalette, and these update every 2500ms to keep things shifting slowly in the background.
 
 - **Efficient control flow** 
 
