@@ -64,10 +64,10 @@ After each animation loop completes, a new cycle with fresh randomness begins.
 
 While I contributed to the group project by implementing user interaction and shared background rendering (as shown in the demo below — blocks respond to user-triggered instruments), my individual work shifts focus toward a individual theme: **Perlin noise and randomness**.
 
-
+<br><br>
 <p align="center">
   <img src=" assets/GIF_20250613164716657.GIF" alt="Animation Preview" width="500">
-
+<br><br>
 
 
 In my solo contribution, I use noise to control the floating behavior of squares, adding subtle motion and liveliness to the visual composition.
@@ -101,15 +101,26 @@ By combining squares of different forms and behaviors, I aim to abstractly repre
 
 ## Technical Summary
 
-- **Responsive design** using `windowWidth/Height` to scale layout.
-- **Grid-based animation** with two layers:
-  - Upper layer: squares with bounce-in effect
-  - Lower layer: rectangles jitter using Perlin offset
+- **Responsive design** 
+
+The canvas resizes with the window. I calculate spacing and cell sizes (gap, cellSize1, cellSize2) dynamically using initLayout(), so the composition always fits the screen.
+
+
+- **Grid-based animation** 
+
+with two layers:
+
+  Upper Layer: Squares pop in with a bounce, using random delays and easeOutElastic() for movement.
+
+  Lower Layer: Rectangles shake gently, controlled by Perlin noise — giving a subtle, natural motion.
+
 - **Color Zones**:
-  - Defined by gridline intersections (`yellowCols`, `yellowRows`)
-  - Updated every 2500ms using `regionQuarterColors`
-- **Elastic easing** (`easeOutElastic`) to give animation springiness
-- **Efficient control flow** using `draw()` loop + `t` as frame timer
+
+  The background is divided into zones based on yellow gridlines. Each region gets four colors using weighted randomness from bgPalette, and these update every 2500ms to keep things shifting slowly in the background.
+
+- **Efficient control flow** 
+
+using `draw()` loop + `t` as frame timer. Each animation cycle is managed with a frame counter t. Once all blocks finish animating, the layout resets with new randomness, keeping the motion non-repetitive.
 
 
 ---
